@@ -1,0 +1,33 @@
+name: DEMO - ICMP_01
+
+config:
+  frequency:
+    icmp: 12s
+  timeout:
+    icmp: 300ms
+
+vars:
+  dns: [8.8.8.8, 1.1.1.1]
+
+testcases:
+  - name: Ping well known
+    steps:
+      - name: Simple ICMP on my domains
+        probe:
+          type: icmp
+          ipversion: 4
+          host: $item
+        assertions:
+          - rtt < 100ms
+        loop:
+          - vincoll-domains
+
+      - name: Simple ICMP on DNS providers
+        probe:
+          type: icmp
+          ipversion: 4
+          host: $item
+        assertions:
+          - rtt < 50ms
+        loop:
+          - dns

@@ -1,0 +1,36 @@
+name: DEMO - X509_01
+
+config:
+  frequency:
+    x509: 1d
+  timeout:
+    x509: 2s
+
+testcases:
+
+  - name: TC X509 demo 1
+
+    steps:
+      - name: x509 check on Vincoll Domains
+        probe:
+          type: x509
+          host: $item
+          port: 443
+        assertions:
+          - valid == true
+          - daybeforeexpiration > 15
+          - rootcertificate.isca == true
+        loop:
+          - vincoll-domains
+
+      - probe:
+          type: x509
+          host: abc.xyz
+          port: 443
+        assertions:
+          - valid == true
+          - daybeforeexpiration > 15
+          - expired == false
+          - endcertificate.dnsnames Contains "*.golang.com"
+          - rootcertificate.publickeyalgorithm != "3DES"
+          - endcertificate.signaturealgorithm == "SHA256-RSA"

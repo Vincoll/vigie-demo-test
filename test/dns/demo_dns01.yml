@@ -1,0 +1,57 @@
+name: DEMO - DNS_01
+
+config:
+  frequency:
+    dns: 3m
+  timeout:
+    dns: 1s
+
+testcases:
+  - name: Various DNS query
+    steps:
+
+    - probe:
+        type: dns
+        FQDN: "a1.dns.test.vigie.dev."
+        RecordType: "A"
+      assertions:
+        - answer EQ ["0.0.0.1"]
+        - answer Equal ["0.0.0.1"]
+        - answer == ["0.0.0.1"]
+
+    - probe:
+        type: dns
+        FQDN: "a6.dns.test.vigie.dev."
+        RecordType: "A"
+      assertions:
+        - answer $$ ["0.0.0.1", "0.0.0.2", "0.0.0.3"]
+        - answer Contains ["0.0.0.1", "0.0.0.2", "0.0.0.3"]
+
+    - probe:
+        type: dns
+        FQDN: "txt3.dns.test.vigie.dev."
+        RecordType: "TXT"
+      assertions:
+        - answer == ["c","a","t"]
+
+    - probe:
+        type: dns
+        FQDN: "txt3.dns.test.vigie.dev."
+        RecordType: "TXT"
+      assertions:
+        - answer $$ "c"
+
+    - probe:
+        type: dns
+        FQDN: "txt1.dns.test.vigie.dev"
+        RecordType: "TXT"
+      assertions:
+        - answer == ["Vigie"]
+
+    - probe:
+        type: dns
+        FQDN: "txtadv2.dns.test.vigie.dev."
+        RecordType: "TXT"
+      assertions:
+        - answer == ["a 1","b 2"]
+        - answer Contains "a 1"

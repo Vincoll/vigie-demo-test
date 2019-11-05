@@ -1,0 +1,26 @@
+name: DEMO - PORT_02
+
+config:
+  frequency:
+    port: 60s
+  timeout:
+    port: 1s
+
+vars:
+  public-dns: [1.1.1.1, 8.8.8.8]
+
+testcases:
+  - name: Port UDP 53
+
+    steps:
+    - name: test
+      probe:
+        type: port
+        host: $item
+        protocol: udp
+        port: 53
+      assertions:
+        - reachable == true
+        - probeinfo.responsetime < 248ms
+      loop:
+        - $public-dns

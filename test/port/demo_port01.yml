@@ -1,0 +1,39 @@
+name: DEMO - PORT_01
+
+config:
+  frequency:
+    port: 20s
+  timeout:
+    port: 200ms
+
+vars:
+  dns-vincoll: [vigie.dev, vincoll.io]
+
+testcases:
+  - name: Port TCP 80
+
+    steps:
+    - name: test
+      probe:
+        type: port
+        host: $item
+        protocol: tcp
+        port: 80
+      assertions:
+        - reachable == true
+        - probeinfo.responsetime < 100ms
+      loop:
+        - $dns-vincoll
+
+  - name: Port Should NOT be opened
+
+    steps:
+    - probe:
+        type: port
+        host: $item
+        protocol: tcp
+        port: 22
+      assertions:
+        - reachable == false
+      loop:
+        - $vincoll-domains
