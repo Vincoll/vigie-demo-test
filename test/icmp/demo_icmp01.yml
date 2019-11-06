@@ -20,7 +20,7 @@ testcases:
         assertions:
           - rtt < 100ms
         loop:
-          - vincoll-domains
+          - $vincoll-domains
 
       - name: Simple ICMP on DNS providers
         probe:
@@ -30,4 +30,4 @@ testcases:
         assertions:
           - rtt < 50ms
         loop:
-          - dns
+          - $dns

@@ -25,14 +25,24 @@ testcases:
       loop:
         - $dns-vincoll
 
-  - name: Port Should NOT be opened
+  - name: Ports Should NOT be opened
 
     steps:
     - probe:
         type: port
         host: $item
         protocol: tcp
-        port: 22
+        port: 21
+      assertions:
+        - reachable == false
+      loop:
+        - $vincoll-domains
+
+    - probe:
+        type: port
+        host: $item
+        protocol: tcp
+        port: 20
       assertions:
         - reachable == false
       loop:
