@@ -2,9 +2,9 @@ name: DEMO - PORT_01
 
 config:
   frequency:
-    port: 20s
+    port: 1m
   timeout:
-    port: 200ms
+    port: 1s
 
 vars:
   dns-vincoll: [vigie.dev, vincoll.io]
@@ -21,7 +21,7 @@ testcases:
         port: 80
       assertions:
         - reachable == true
-        - probeinfo.responsetime < 100ms
+        - probeinfo.responsetime < 300ms
       loop:
         - $dns-vincoll
 

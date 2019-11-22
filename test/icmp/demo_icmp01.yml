@@ -2,7 +2,7 @@ name: DEMO - ICMP_01
 
 config:
   frequency:
-    icmp: 12s
+    icmp: 22s
   timeout:
     icmp: 300ms
 
@@ -12,17 +12,17 @@ vars:
 testcases:
   - name: Ping well known
     steps:
-      - name: Simple ICMP on my domains
+      - name: Simple ICMP on Vigie/Vincoll hostnames
         probe:
           type: icmp
           ipversion: 4
           host: $item
         assertions:
-          - rtt < 100ms
+          - rtt < 300ms
         loop:
           - $vincoll-domains
 
-      - name: Simple ICMP on DNS providers
+      - name: Simple ICMP on popular DNS resolvers
         probe:
           type: icmp
           ipversion: 4

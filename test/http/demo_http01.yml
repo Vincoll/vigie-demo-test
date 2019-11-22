@@ -1,0 +1,43 @@
+name: DEMO - HTTP_01
+
+config:
+  frequency:
+    http: 1h
+
+testcases:
+
+- name: CI HTTP
+
+  steps:
+
+    - name: Get a JSON value 
+      probe:
+        type: http
+        follow_redirects: true
+        method: GET
+        url: https://httpbin.org/json
+      assertions:
+        - probeinfo.responsetime < 600ms
+        - httpcode == 200
+        - headers.Content-Type == "application/json"
+        - bodyjson.slideshow.author == "Yours Truly"
+
+
+    - name: Get an answer after POST
+      probe:
+        type: http
+        follow_redirects: true
+        method: POST
+        url: https://httpbin.org/anything/Vigie_post
+        body: '{user: "foo"}'
+      assertions:
+        - httpcode == 200
+
+
+    - name: Get vincoll.io
+      probe:
+        type: http
+        method: GET
+        url: https://vincoll.io
+      assertions:
+        - httpcode == 200

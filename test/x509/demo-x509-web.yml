@@ -2,9 +2,9 @@ name: DEMO - X509_01
 
 config:
   frequency:
-    x509: 1d
+    x509: 8h
   timeout:
-    x509: 2s
+    x509: 10s
 
 testcases:
 

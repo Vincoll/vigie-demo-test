@@ -2,7 +2,7 @@ name: DEMO - HASH_01
 
 config:
   frequency:
-    hash: 8h
+    hash: 1h
   timeout:
     hash: 6s
 

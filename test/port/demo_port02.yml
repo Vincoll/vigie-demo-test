@@ -2,7 +2,7 @@ name: DEMO - PORT_02
 
 config:
   frequency:
-    port: 60s
+    port: 1m
   timeout:
     port: 1s
 

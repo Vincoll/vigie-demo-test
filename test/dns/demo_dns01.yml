@@ -2,7 +2,7 @@ name: DEMO - DNS_01
 
 config:
   frequency:
-    dns: 3m
+    dns: 30m
   timeout:
     dns: 1s
 
