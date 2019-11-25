@@ -8,10 +8,9 @@ apiversion = 0.5
 
 [host]
   name = "Demo Instance"
-  url = "https://vigie.demo.vigie.dev"
+  url = ""
   [host.tags]
-    infra = "gcp"
-    region = "eu-west-6"
+    k = "v"
 
 [git]
   clone = true
@@ -30,7 +29,7 @@ apiversion = 0.5
 
 [api]
   enable = true
-  port = 80
+  port = 6680
 
 [log]
   stdout = true
@@ -39,14 +38,14 @@ apiversion = 0.5
   filePath = "/tmp/vigie.log"
 
 [influxdb]
-  enable = true
+  enable = false
   addr = "http://influxdb:8086"
   user = "user"
   password = "user"
   database = "vigie"
 
 [alerting]
-  enable = true
+  enable = false
   interval = "10s"
   reminder = "8h"
   [alerting.email]
