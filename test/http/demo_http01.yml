@@ -22,7 +22,6 @@ testcases:
         - headers.Content-Type == "application/json"
         - bodyjson.slideshow.author == "Yours Truly"
 
-
     - name: Get an answer after POST
       probe:
         type: http
@@ -32,7 +31,6 @@ testcases:
         body: '{user: "foo"}'
       assertions:
         - httpcode == 200
-
 
     - name: Get vincoll.io
       probe:
