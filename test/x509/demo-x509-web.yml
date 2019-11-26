@@ -21,7 +21,7 @@ testcases:
           - daybeforeexpiration > 15
           - rootcertificate.isca == true
         loop:
-          - vincoll-domains
+          - $vincoll-domains
 
       - probe:
           type: x509
