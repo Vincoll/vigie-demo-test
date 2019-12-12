@@ -1,16 +1,15 @@
 #
 # This is a Vigie config file example used to run vigie.dev/demo
+# Complete documentation: https://docs.vigie.dev/configuration/overview/
 # This config file need to be load by a Vigie binary
 # vigie run --config vigieconf.toml
 #
-
-apiversion = 0.5
 
 [host]
   name = "Demo Instance"
   url = ""
   [host.tags]
-    k = "v"
+    env = "demo"
 
 [git]
   clone = true
@@ -56,5 +55,6 @@ apiversion = 0.5
     smtp  = ""
     port = 587
   [alerting.discord]
-    hook = "https://discordapp.com/api/webhooks/000000000000000/aaaaaazzzzzzz"
-
+    hook = ""
+  [alerting.slack]
+    hook = ""
