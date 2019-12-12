@@ -33,7 +33,7 @@
 [log]
   stdout = true
   logfile = false
-  level = "debug"
+  level = "info"
   filePath = "/tmp/vigie.log"
 
 [influxdb]
